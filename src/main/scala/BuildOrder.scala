@@ -3,7 +3,7 @@ import scala.collection.mutable.ListBuffer
 object BuildOrder {
   def main(args: Array[String]): Unit = {
 
-    def builder(projects: List[Char], dependencies: List[(Char, Char)]): ListBuffer[Char] = {
+    def dependencySorter(projects: List[Char], dependencies: List[(Char, Char)]): ListBuffer[Char] = {
       var newList = new ListBuffer[Char]() //mutable list to hold the build order to print.
       var w = 0 //increment variable for the while loop
       while(w <=projects.length - 2){
@@ -47,7 +47,7 @@ object BuildOrder {
     val dependencies = List(('a', 'd'), ('f', 'b'), ('b', 'd'), ('f', 'a'), ('d', 'c'))
     //TEST FOR WHEN THE LIST ALREADY SATISFIES ALL DEPENDENCIES:
     //val dependencies = List(('a', 'b'), ('b', 'c'), ('c', 'd'), ('d', 'e'), ('e', 'f'))
-    val answer = builder(projects, dependencies)
+    val answer = dependencySorter(projects, dependencies)
 
     val buildOrder = answer.mkString(", ")
     println("Output: " + buildOrder)
