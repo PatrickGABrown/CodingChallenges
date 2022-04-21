@@ -16,7 +16,7 @@ object BuildOrder {
           //---------------------------------------------------------------------------------
           //FOR CASES WHERE EVERYTHING IS NOT ALREADY IN ORDER:
           else{
-            var tup = dependencies(x)
+            val tup = dependencies(x)
             if (newList.contains(tup._1) || newList.contains(tup._2)){
               newList -= tup._2
               val indie = newList.indexOf(tup._1)
@@ -30,7 +30,7 @@ object BuildOrder {
         }//END OF THE DEPENDENCIES CHECK INNER FOR-LOOP
         w += 1
         //FINAL CHECK TO ADD ELEMENTS IN THE LIST WHO DON'T HAVE ANY DEPENDENCIES:
-        if(newList.contains(projects(w)) == false){
+        if(!newList.contains(projects(w))){
           newList += projects(w)
         }
         //if all of the items in the original list are already in the build order correctly, stop evaluating.
@@ -38,8 +38,7 @@ object BuildOrder {
           w = 100
         }
       }//END OF OUTER FOR-LOOP
-      return newList
-
+      newList //The mutable list with the build order is returned
     }
 
     //List of projects
